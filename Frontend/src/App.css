@@ -1,0 +1,331 @@
+:root {
+  min-height: 100vh;
+  overflow-x: auto;
+  background-color: whitesmoke;
+}
+.login-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  border-radius: 18px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 400px;
+}
+.signin-name {
+  text-align: center;
+  font-size: xx-large;
+}
+.signin-button {
+  cursor: pointer;
+  background-color: lightgreen;
+  font-size: large;
+  width: 100%;
+  margin: 5px;
+  border: none;
+}
+.signin-button:hover {
+  background-color: rgb(103, 228, 103);
+  color: black;
+  text-decoration: none;
+}
+.signin-field {
+  font-size: large;
+  padding: 11px;
+  border-radius: 8px;
+  margin: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid rgb(196, 190, 190);
+}
+.signin-field:focus {
+  border: 2px solid black;
+}
+.linklike {
+  margin-top: 9px;
+  margin-right: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: rgb(3, 68, 3);
+  cursor: pointer;
+  font-size: 16px;
+  font-family: inherit;
+}
+.linklike:hover {
+  color: #1d4ed8;
+}
+.error-text {
+  color: red;
+  text-align: center;
+}
+.board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 95vh;
+  background-color: whitesmoke;
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10%;
+  height: 100vh;
+  background-color: greenyellow;
+  text-align: center;
+  z-index: 1;
+  overflow-y: auto;
+}
+.split {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  position: absolute;
+  top: 5%;
+  width: 70%;
+  height: 90%;
+  right: 6%;
+  text-align: center;
+}
+.table {
+  border: black solid 1px;
+  margin-bottom: -5px;
+}
+.gap {
+  height: 23%;
+  font-weight: bold;
+}
+h3 {
+  font-size: 100%;
+}
+img {
+  width: 50px;
+  height: 50px;
+}
+.task-icon {
+  background-color: transparent;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  padding: 5px;
+}
+.task-icon:hover {
+  text-decoration: none;
+}
+button:focus {
+  outline: none;
+}
+button:hover {
+  outline: none;
+  text-decoration: underline;
+}
+.menu {
+  background-color: whitesmoke;
+  border-radius: 10px;
+  margin: 10px;
+  margin-top: 0px;
+  padding-top: 6%;
+}
+.task-detail-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  width: min(500px, 90%);
+  max-width: 500px;
+  max-height: 80vh;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+.task-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.task-detail-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+.close-button {
+  border: none;
+  background: #90ee90;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: none;
+}
+.close-button:hover {
+  background-color: rgb(103, 228, 103);
+  color: black;
+  text-decoration: none;
+}
+.task-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.task-detail-row span:last-child {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+.task-detail-label {
+  font-weight: 700;
+  opacity: 0.9;
+}
+.modal-form {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 16px;
+  align-items: start;
+}
+.modal-main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal-side {
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: start;
+}
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+textarea {
+  resize: none;
+  height: 20%;
+}
+.card {
+  background-color: white;
+  width: 99%;
+  margin-left: 0.5%;
+  height: fit-content;
+  margin-bottom: 2%;
+  text-align: left;
+  padding-bottom: 3%;
+  border-radius: 3%;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 8px;
+  position: relative;
+}
+.card .card-checkbox-wrapper {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  z-index: 20;
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+.p-checkbox-box {
+  display: none;
+}
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+  background-color: #90ee90;
+  border: #000000 solid 0.1px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+.card-priority {
+  font-size: 12px;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 2px 8px;
+}
+.card-description {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-field {
+  padding-left: 2%;
+  font-size: 13px;
+  opacity: 0.95;
+}
+.delete-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  background-color: tomato;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 5px 6px 34px rgb(0, 0, 0, 0.2);
+}
+.delete-button:hover {
+  background-color: red;
+  text-decoration: none;
+}
+.p-datepicker-group,
+.p-yearpicker,
+.p-monthpicker,
+.p-dropdown-items-wrapper {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+.p-dialog .p-dialog-title,
+.p-dialog-title {
+  font-weight: 700;
+  text-decoration: underline;
+}
+.dialog-header-with-move {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.dialog-header-with-move .dialog-title {
+  font-weight: 700;
+}
+.dialog-move-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  cursor: default;
+}
+.p-dialog.p-component.p-dialog-default.p-ripple-disabled.p-dialog-enter-done {
+  background-color: white;
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+}
