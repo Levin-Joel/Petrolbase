@@ -1,11 +1,11 @@
 import { Navbar } from "./Navbar";
 import { Category } from "./Category";
 
-export const Board = ({ onLogout }) => {
+export const Board = () => {
   return (
     <div className="board">
       <div className="navbar">
-        <Navbar onLogout={onLogout} />
+        <Navbar />
       </div>
       <div className="split">
         <Category />

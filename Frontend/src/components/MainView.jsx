@@ -1,7 +1,7 @@
 import { Board } from "./Board";
 
-export const MainView = ({onLogout}) => {
+export const MainView = () => {
     return (
-        <Board onLogout={onLogout} />
+        <Board />
     );
 };

@@ -3,7 +3,8 @@ import { Button } from "primereact/button";
 import { Checkbox } from "primereact/checkbox";
 import { Card } from "primereact/card";
 import { TaskDetailModal } from "./Task";
-import { deleteMode } from "./Remove";
+import { useDeleteMode } from "./Remove";
+import { AuthContext } from "../provider/AuthContext";
 
 const parseLegacyTask = (item) => {
   if (typeof item !== "string") return item;
@@ -36,15 +37,9 @@ const normalizeColumns = (saved) => ({
 });
 
 export const Category = () => {
-  // Initialize board columns with user-specific tasks from localStorage
+  const { currentUser } = AuthContext();
+  const storageKey = `columns_${currentUser.id}`;
   const [columns, setColumns] = useState(() => {
-    // Retrieve current logged-in user from sessionStorage
-    const currentUser = JSON.parse(
-      sessionStorage.getItem("currentUser") || "{}",
-    );
-    // Create user-specific storage key to isolate each user's tasks
-    const storageKey = `columns_${currentUser.id}`;
-    // Load user's tasks from localStorage
     const saved = localStorage.getItem(storageKey);
     return saved
       ? normalizeColumns(JSON.parse(saved))
@@ -56,27 +51,15 @@ export const Category = () => {
         };
   });
 
-  // Persist task changes to localStorage whenever columns are modified
   useEffect(() => {
-    // Get current user from sessionStorage for user-specific storage
-    const currentUser = JSON.parse(
-      sessionStorage.getItem("currentUser") || "{}",
-    );
-    // Use user-specific storage key (columns_userId)
-    const storageKey = `columns_${currentUser.id}`;
-    // Save updated columns to localStorage under user-specific key
     localStorage.setItem(storageKey, JSON.stringify(columns));
-  }, [columns]);
+  }, [columns, storageKey]);
 
   useEffect(() => {
     const handler = (e) => {
       const newColumns =
         e?.detail ||
         (() => {
-          const currentUser = JSON.parse(
-            sessionStorage.getItem("currentUser") || "{}",
-          );
-          const storageKey = `columns_${currentUser.id}`;
           const saved = localStorage.getItem(storageKey);
           return saved ? normalizeColumns(JSON.parse(saved)) : null;
         })();
@@ -85,7 +68,7 @@ export const Category = () => {
 
     window.addEventListener("columnsUpdated", handler);
     return () => window.removeEventListener("columnsUpdated", handler);
-  }, []);
+  }, [storageKey]);
 
   const handleDragStart = (e, itemId, fromColumn) => {
     e.dataTransfer.setData("item", itemId);
@@ -120,7 +103,7 @@ export const Category = () => {
   const handleCloseModal = () => setSelectedTask(null);
 
   const { isDeleteMode, selectedTasks, handleTaskSelect, deleteSelected } =
-    deleteMode();
+    useDeleteMode(currentUser);
 
   const renderCard = (card, columnName) => (
     <Card

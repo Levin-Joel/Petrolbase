@@ -8,7 +8,7 @@ export const disableDeleteMode = () => {
   window.dispatchEvent(new CustomEvent("disableDeleteMode"));
 };
 
-export const deleteMode = () => {
+export const useDeleteMode = (currentUser) => {
   const [isDeleteMode, setIsDeleteMode] = useState(false);
   const [selectedTasks, setSelectedTasks] = useState(new Set());
 
@@ -44,9 +44,6 @@ export const deleteMode = () => {
   };
 
   const deleteSelected = () => {
-    const currentUser = JSON.parse(
-      sessionStorage.getItem("currentUser") || "{}",
-    );
     const storageKey = `columns_${currentUser.id}`;
     const columns = JSON.parse(localStorage.getItem(storageKey) || "{}");
     const newColumns = { ...columns };

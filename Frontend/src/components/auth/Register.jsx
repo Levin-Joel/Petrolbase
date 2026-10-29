@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DataContext } from "../provider/DataContext";
+import { AuthContext } from "../../provider/AuthContext";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
@@ -16,33 +16,9 @@ export const Register = ({ onSwitchToSignIn }) => {
   const [touchedConfirm, setTouchedConfirm] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
-  const { users, saveUsers } = DataContext();
+  const { register } = AuthContext();
 
   const isValid = validateEmail(email);
-
-  const register = (name, email, password) => {
-    const userExists = users.some((user) => user.email === email);
-    if (userExists) {
-      return { success: false, message: "E-Mail existiert bereits!" };
-    }
-
-    const newUser = {
-      id: Date.now(),
-      name,
-      email,
-      password,
-      createdAt: new Date().toISOString(),
-    };
-
-    const updatedUsers = [...users, newUser];
-    saveUsers(updatedUsers);
-
-    return {
-      success: true,
-      message: "Registrierung erfolgreich!",
-      user: newUser,
-    };
-  };
 
   const passwordsMatch = password === confirmPassword && password !== "";
   const nameTooLong = name.trim().length > 20;
@@ -61,26 +37,21 @@ export const Register = ({ onSwitchToSignIn }) => {
     e.preventDefault();
     if (!canSubmit) return;
 
-    const result = register(name, email, password);
-
-    if (result.success) {
-      setMessage(result.message);
-      setIsError(false);
-      // clear form
-      setName("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setTouchedConfirm(false);
-
-      // 2 secounds delay for login
-      setTimeout(() => {
-        onSwitchToSignIn();
-      }, 2000);
-    } else {
-      setMessage(result.message);
-      setIsError(true);
-    }
+    register(name.trim(), email.trim(), password)
+      .then(() => {
+        setMessage("Registrierung erfolgreich!");
+        setIsError(false);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setTouchedConfirm(false);
+        setTimeout(onSwitchToSignIn, 2000);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+        setIsError(true);
+      });
   };
 
   return (
@@ -129,7 +100,7 @@ export const Register = ({ onSwitchToSignIn }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            minLength={1}
+            minLength={8}
           />
         </div>
 
@@ -143,7 +114,7 @@ export const Register = ({ onSwitchToSignIn }) => {
             onBlur={() => setTouchedConfirm(true)}
             aria-invalid={touchedConfirm && !passwordsMatch ? "true" : "false"}
             required
-            minLength={1}
+            minLength={8}
           />
           {touchedConfirm && confirmPassword !== "" && !passwordsMatch && (
             <p className="error-text" role="alert">

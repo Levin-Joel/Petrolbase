@@ -1,17 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="073a8794-cb94-4d7a-a491-b9f7e1f0d2cf" name="Changes" comment="" />
+    <list default="true" id="073a8794-cb94-4d7a-a491-b9f7e1f0d2cf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/AddTask.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/AddTask.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Board.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Board.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Change.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Change.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/LoginView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/LoginView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/MainView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/MainView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Profil.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Profil.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Remove.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Remove.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/Task.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/Task.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/LoginView.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/LoginView.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/components/auth/SignIn.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/components/auth/SignIn.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/provider/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/src/provider/AuthContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/src/provider/DataContext.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Frontend/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Frontend/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8,
-  "fromUser": false
-}]]></component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_E:/Petrolbase" value="3LNPecljH3I27hdbxO5Hi9mqTHx" />
+    </persistenceIdMap>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3LMuP2ZacJW7rjfwSos0r7CmTYC" />
+  <component name="ProjectSessionTemplates">
+    <option name="panelTemplate">
+      <template>
+        <option name="ensembleEnabled" value="false" />
+        <option name="modeId" value="Agent" />
+        <option name="model">
+          <model>
+            <option name="modelType" value="builtin_id" />
+            <option name="modelValue" value="auto" />
+          </model>
+        </option>
+        <option name="targetType" value="BACKGROUND" />
+        <option name="worktreeMode" value="WORKSPACE" />
+      </template>
+    </option>
+    <option name="version" value="1" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -20,8 +67,11 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "copilot.chat.legacySessionMetadata.migrated": "true",
+    "git-widget-placeholder": "feature",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Petrolbase",
     "node.js.detected.package.eslint": "true",

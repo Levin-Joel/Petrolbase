@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AuthContext } from "../provider/AuthContext";
+import { AuthContext } from "../../provider/AuthContext";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
@@ -11,7 +11,6 @@ const validateEmail = (email) => {
 export const Signin = ({
   onSwitchToRegister,
   onSwitchToChange,
-  onLoginSuccess,
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,19 +24,15 @@ export const Signin = ({
     e.preventDefault();
 
     if (validateEmail(email) && password !== "") {
-      const result = login(email, password);
-
-      if (result.success) {
-        setMessage("");
-        setIsError(false);
-
-        setTimeout(() => {
-          onLoginSuccess();
-        }, 500);
-      } else {
-        setMessage(result.message);
-        setIsError(true);
-      }
+      login(email, password)
+        .then(() => {
+          setMessage("");
+          setIsError(false);
+        })
+        .catch((error) => {
+          setMessage(error.message);
+          setIsError(true);
+        });
     }
   };
 
@@ -98,7 +93,7 @@ export const Signin = ({
           type="button"
           className="linklike"
           onClick={onSwitchToChange}
-          label={"Passwort zurücksetzen"}
+          label={"Passwort ändern"}
         />
       </div>
     </div>

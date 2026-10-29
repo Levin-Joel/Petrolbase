@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DataContext } from "../provider/DataContext";
+import { AuthContext } from "../../provider/AuthContext";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
@@ -10,57 +10,43 @@ const validateEmail = (email) => {
 
 export const Change = ({ onSwitchToSignIn }) => {
   const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [touchedConfirm, setTouchedConfirm] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
-  const { users, saveUsers } = DataContext();
+  const { changePassword } = AuthContext();
 
   const isValid = validateEmail(email);
 
-  const resetPassword = (email, newPassword) => {
-    const userIndex = users.findIndex((user) => user.email === email);
-    if (userIndex === -1) {
-      return {
-        success: false,
-        message: "Kein Account mit dieser E-Mail gefunden.",
-      };
-    }
-
-    const updatedUsers = [...users];
-    updatedUsers[userIndex] = {
-      ...updatedUsers[userIndex],
-      password: newPassword,
-    };
-
-    saveUsers(updatedUsers);
-
-    return {
-      success: true,
-      message: "Passwort erfolgreich zurükgesetzt!",
-    };
-  };
-
   const passwordsMatch = password === confirmPassword;
   const canSubmit =
-    isValid && password !== "" && confirmPassword !== "" && passwordsMatch;
+    isValid &&
+    currentPassword !== "" &&
+    password.length >= 8 &&
+    confirmPassword !== "" &&
+    passwordsMatch;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!canSubmit) return;
 
-    const result = resetPassword(email, password);
-    setMessage(result.message);
-    setIsError(!result.success);
-
-    if (result.success) {
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
-      setTouchedConfirm(false);
-      setTimeout(() => onSwitchToSignIn(), 2000);
-    }
+    changePassword(email.trim(), currentPassword, password)
+      .then(() => {
+        setMessage("Passwort erfolgreich geändert!");
+        setIsError(false);
+        setEmail("");
+        setCurrentPassword("");
+        setPassword("");
+        setConfirmPassword("");
+        setTouchedConfirm(false);
+        setTimeout(onSwitchToSignIn, 2000);
+      })
+      .catch((error) => {
+        setMessage(error.message);
+        setIsError(true);
+      });
   };
 
   return (
@@ -87,6 +73,17 @@ export const Change = ({ onSwitchToSignIn }) => {
           <InputText
             className="signin-field"
             type="password"
+            placeholder="Aktuelles Passwort"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <div>
+          <InputText
+            className="signin-field"
+            type="password"
             placeholder="Neues Passwort"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -105,7 +102,7 @@ export const Change = ({ onSwitchToSignIn }) => {
             onBlur={() => setTouchedConfirm(true)}
             aria-invalid={touchedConfirm && !passwordsMatch ? "true" : "false"}
             required
-            minLength={1}
+            minLength={8}
           />
           {touchedConfirm && confirmPassword !== "" && !passwordsMatch && (
             <p className="error-text" role="alert">

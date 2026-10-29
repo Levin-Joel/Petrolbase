@@ -3,7 +3,7 @@ import { Signin } from "./Signin";
 import { Register } from "./Register";
 import { Change } from "./Change";
 
-export const LoginView = ({ onLoginSuccess }) => {
+export const LoginView = () => {
   const [mode, setMode] = useState("signin");
 
   return (
@@ -13,7 +13,6 @@ export const LoginView = ({ onLoginSuccess }) => {
         <Signin
           onSwitchToRegister={() => setMode("register")}
           onSwitchToChange={() => setMode("change")}
-          onLoginSuccess={onLoginSuccess}
         />
       )}
 

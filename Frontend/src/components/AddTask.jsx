@@ -8,7 +8,7 @@ import { Calendar } from "primereact/calendar";
 import { Dialog } from "primereact/dialog";
 import moveIcon from "../img/move.png";
 
-export const AddTask = ({ isOpen, onClose }) => {
+export const AddTask = ({ isOpen, onClose, currentUser }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Mittel");
@@ -35,6 +35,7 @@ export const AddTask = ({ isOpen, onClose }) => {
       tags: tags.split(",").map((tag) => tag.trim()),
       assignedTo,
       reminder,
+      currentUser,
     });
 
     onClose();

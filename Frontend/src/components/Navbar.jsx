@@ -1,30 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { AddTask } from "./AddTask";
 import { toggleDeleteMode, disableDeleteMode } from "./Remove";
-import { DataContext } from "../provider/DataContext";
 import { AuthContext } from "../provider/AuthContext";
 
-export const Navbar = ({ onLogout }) => {
+export const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddTask, setShowAddTask] = useState(false);
-  const { users, saveUsers } = DataContext();
   const auth = AuthContext();
 
-  const deleteUser = (email) => {
-    const updatedUsers = users.filter((user) => user.email !== email);
-    saveUsers(updatedUsers);
-
-    return {
-      success: true,
-      message: "Account erfolgreich gelöscht!",
-    };
-  };
-
-  const handleLogout = () => {
-    auth.logout();
-    sessionStorage.removeItem("showBoard");
-    onLogout();
+  const handleLogout = async () => {
+    try {
+      await auth.logout();
+    } catch (error) {
+      console.error("Abmeldung fehlgeschlagen:", error);
+    }
   };
 
   const handleDeleteAccount = () => {
@@ -34,8 +24,9 @@ export const Navbar = ({ onLogout }) => {
       )
     ) {
       if (auth.currentUser) {
-        deleteUser(auth.currentUser.email);
-        handleLogout();
+        auth.deleteAccount().catch((error) => {
+          console.error("Account konnte nicht gelöscht werden:", error);
+        });
       }
     }
   };
@@ -89,18 +80,7 @@ export const Navbar = ({ onLogout }) => {
             <label disabled>{auth.currentUser?.name || "Benutzer"}</label>
             <hr></hr>
             <Button
-              onClick={() => {
-                if (
-                  window.confirm(
-                    "Möchten Sie Ihren Account wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
-                  )
-                ) {
-                  if (auth.currentUser) {
-                    auth.deleteAccount(auth.currentUser.email);
-                    handleLogout();
-                  }
-                }
-              }}
+              onClick={handleDeleteAccount}
               label={"Löschen"}
             />
 
@@ -115,7 +95,11 @@ export const Navbar = ({ onLogout }) => {
           if (showAddTask) setShowMenu(false);
         }, [showAddTask])}
       </>
-      <AddTask isOpen={showAddTask} onClose={() => setShowAddTask(false)} />
+      <AddTask
+        isOpen={showAddTask}
+        onClose={() => setShowAddTask(false)}
+        currentUser={auth.currentUser}
+      />
     </>
   );
 };

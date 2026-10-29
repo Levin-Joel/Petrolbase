@@ -1,19 +1,13 @@
-import { useEffect, useState } from "react";
 import { Button } from "primereact/button";
+import { AuthContext } from "../provider/AuthContext";
 
-export const Profil = ({ onLogout }) => {
-  const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    const user = sessionStorage.getItem("currentUser");
-    if (user) {
-      setCurrentUser(JSON.parse(user));
-    }
-  }, []);
+export const Profil = () => {
+  const { currentUser, logout } = AuthContext();
 
   const handleLogout = () => {
-    sessionStorage.removeItem("currentUser");
-    onLogout();
+    logout().catch((error) => {
+      console.error("Abmeldung fehlgeschlagen:", error);
+    });
   };
 
   if (!currentUser) {
